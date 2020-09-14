@@ -1,0 +1,6 @@
+module Pods_PushNotificationAndroidAndIos {
+  umbrella header "Pods-PushNotificationAndroidAndIos-umbrella.h"
+
+  export *
+  module * { export * }
+}
