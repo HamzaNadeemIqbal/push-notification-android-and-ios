@@ -49,9 +49,16 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
 
   // Define UNUserNotificationCenter
-  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-  center.delegate = self;
+  // UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+  // center.delegate = self;
 
+UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+  
+[center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound + UNAuthorizationOptionBadge)completionHandler:^(BOOL granted, NSError * _Nullable error) {
+         if (granted) {
+            center.delegate = self; 
+          }
+ }];
 
   return YES;
 }
