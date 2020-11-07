@@ -6,6 +6,8 @@
  * @flow strict-local
  */
 
+import messaging from "@react-native-firebase/messaging";
+
 import React from "react";
 import {
   SafeAreaView,
@@ -29,40 +31,62 @@ import PushNotification from "react-native-push-notification";
 
 export default class App extends React.Component {
   componentDidMount() {
-    PushNotificationIOS.addEventListener("register", (token) => {
-      console.log(token);
-      Alert.alert(token);
-    });
+    // PushNotificationIOS.addEventListener("register", (token) => {
+    //   console.log(token);
+    //   Alert.alert(token);
+    // });
 
-    PushNotificationIOS.addEventListener(
-      "registrationError",
-      (registrationError) => {
-        console.log(registrationError, "--");
-      }
-    );
+    // PushNotificationIOS.addEventListener(
+    //   "registrationError",
+    //   (registrationError) => {
+    //     console.log(registrationError, "--");
+    //   }
+    // );
 
-    PushNotificationIOS.addEventListener("notification", function (
-      notification
-    ) {
-      if (!notification) {
-        return;
-      }
-      const data = notification.getData();
-      Alert.alert(JSON.stringify({ data, source: "CollapsedApp" }));
-    });
+    // PushNotificationIOS.addEventListener("notification", function (
+    //   notification
+    // ) {
+    //   if (!notification) {
+    //     return;
+    //   }
+    //   const data = notification.getData();
+    //   Alert.alert(JSON.stringify({ data, source: "CollapsedApp" }));
+    // });
 
-    PushNotificationIOS.getInitialNotification().then((notification) => {
-      if (!notification) {
-        return;
-      }
-      const data = notification.getData();
-      Alert.alert(JSON.stringify({ data, source: "ClosedApp" }));
-    });
-    PushNotificationIOS.requestPermissions();
+    // PushNotificationIOS.getInitialNotification().then((notification) => {
+    //   if (!notification) {
+    //     return;
+    //   }
+    //   const data = notification.getData();
+    //   Alert.alert(JSON.stringify({ data, source: "ClosedApp" }));
+    // });
+    // PushNotificationIOS.requestPermissions();
 
     // this.configureNotification();
     // this.localNotification();
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      Alert.alert("A new FCM message arrived!", JSON.stringify(remoteMessage));
+    });
+
+    this.requestUserPermission();
+
+    messaging()
+      .getToken()
+      .then((token) => {
+        console.log(token);
+      });
   }
+
+  requestUserPermission = async () => {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log("Authorization status:", authStatus);
+    }
+  };
 
   localNotification = () => {
     PushNotification.localNotificationSchedule({
@@ -181,3 +205,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+// d4580efc49918788de011faa50eb1800f680efced116513051a98c961efee737
+
+// fKcHsPf0e0tqlvEMZ0HGkH:APA91bEe9j1afRC2qMER9vdp9amSOVKzl0IP3czhtdJFVc-612RAcbNAUks745_-CWHQng3DeHYCbTt6eFtTJjFU68R3sJFMlfNazVzs2vegG_sSsWJi52XQPtpQ8JuZgValRmAKmr6A

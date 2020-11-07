@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1075866233248-tj5am843ue6m57127pf23ofvbfmo7see.apps.googleusercontent.com</string>
+	<string>1075866233248-8dqcd4pa4p5va9blesr21b6f6qcf526g.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1075866233248-tj5am843ue6m57127pf23ofvbfmo7see</string>
+	<string>com.googleusercontent.apps.1075866233248-8dqcd4pa4p5va9blesr21b6f6qcf526g</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBtQ1Ct9lbStrpYJiAmRmKb7PYc2zifVtY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.PushPracticeFirebase</string>
+	<string>org.reactjs.native.example.PushNotificationAndroidAndIos123</string>
 	<key>PROJECT_ID</key>
 	<string>push-notification-test-4de00</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1075866233248:ios:6470fce51db76cb7e85cc5</string>
+	<string>1:1075866233248:ios:77f0866ad116243de85cc5</string>
 	<key>DATABASE_URL</key>
 	<string>https://push-notification-test-4de00.firebaseio.com</string>
 </dict>
